@@ -178,7 +178,7 @@ paths:
       security:
         - bearerAuth: []
 
-  /tanzaku/{tanzakuId}/del:
+  /tanzaku/del/{tanzakuId}:
     delete:
       operationId: deleteTanzaku
       tags:
@@ -300,6 +300,7 @@ components:
         - textLine1
         - nameLine
         - projectId
+        - disabled
       properties:
         id:
           type: string
@@ -319,6 +320,9 @@ components:
         projectId:
           type: string
           example: 'clxrat7xl0001xd2txfzakzz9'
+        disabled:
+          type: boolean
+          example: false
     TanzakuSchemaArray:
       type: array
       items:

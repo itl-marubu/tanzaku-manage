@@ -1,6 +1,6 @@
 'use client'
 
-import { getAllTanzakus } from '@/api'
+import { getAllTanzakus, removeTanzaku } from '@/api'
 import { atomWithStorage } from 'jotai/utils'
 import { useEffect, useState } from 'react'
 import styles from './index.module.scss'
@@ -16,6 +16,7 @@ type TanzakuType = {
   textLine1: string
   textLine2?: string
   nameLine: string
+  disabled: boolean
 }
 
 const loginTokenAtom = atomWithStorage('loginToken', '')
@@ -43,9 +44,15 @@ export const Details: React.FC<Params> = ({ eventId }) => {
     })
   }, [loginToken])
 
-  useEffect(() => {
-    console.log(tanzakus)
-  }, [loginToken, tanzakus])
+  const tanzakuDelete = async (id: string) => {
+    if (!window.confirm('削除しますか？')) {
+      return
+    }
+    const removeAction = await removeTanzaku(loginToken, id)
+    if (removeAction !== undefined) {
+      window.location.reload()
+    }
+  }
   return (
     <>
       <Link href={`/events/${eventId}/SubmitTanzaku`}>
@@ -53,14 +60,37 @@ export const Details: React.FC<Params> = ({ eventId }) => {
       </Link>
       <h2>短冊一覧</h2>
       {tanzakus.map((tanzaku) => {
-        return (
-          <div key={tanzaku.id} className={styles.tanzaku}>
-            <p>{tanzaku.textLine1}</p>
-            <p>{tanzaku.textLine2}</p>
-            <p>{tanzaku.nameLine}</p>
-            <Button>表示削除</Button>
-          </div>
-        )
+        if (!tanzaku.disabled) {
+          return (
+            <div key={tanzaku.id} className={styles.tanzaku}>
+              <p>{tanzaku.textLine1}</p>
+              <p>{tanzaku.textLine2}</p>
+              <p>{tanzaku.nameLine}</p>
+              <p>{tanzaku.disabled}</p>
+              <Button
+                onClick={() => {
+                  tanzakuDelete(tanzaku.id)
+                }}
+              >
+                表示削除
+              </Button>
+            </div>
+          )
+        }
+      })}
+      <hr />
+      <h2>削除された短冊の一覧</h2>
+      {tanzakus.map((tanzaku) => {
+        if (tanzaku.disabled) {
+          return (
+            <div key={tanzaku.id} className={styles.tanzaku}>
+              <p>{tanzaku.textLine1}</p>
+              <p>{tanzaku.textLine2}</p>
+              <p>{tanzaku.nameLine}</p>
+              <p>{tanzaku.disabled}</p>
+            </div>
+          )
+        }
       })}
     </>
   )

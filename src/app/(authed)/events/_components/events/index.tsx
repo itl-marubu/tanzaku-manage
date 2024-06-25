@@ -37,7 +37,6 @@ export const Events: React.FC = () => {
 
   return (
     <div>
-      <p>あ</p>
       {events.map((event) => {
         return (
           <div key={event.id} className={styles.eventWrap}>

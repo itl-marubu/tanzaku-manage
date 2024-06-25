@@ -88,3 +88,17 @@ export const createTanzaku = async (projId: string, tanzaku: tanzaku) => {
   })
   return response.data
 }
+
+export const removeTanzaku = async (token: string, tanzakuId: string) => {
+  const response = await client.DELETE('/tanzaku/del/{tanzakuId}', {
+    params: {
+      path: {
+        tanzakuId,
+      },
+    },
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  return response.data
+}

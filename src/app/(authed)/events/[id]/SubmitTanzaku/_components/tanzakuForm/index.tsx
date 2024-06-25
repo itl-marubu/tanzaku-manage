@@ -31,6 +31,9 @@ export const TanzakuForm: React.FC<Props> = ({ eventId }) => {
       }
     } catch (e) {
       console.error(e)
+      alert(`
+        作成に失敗しました\n
+        エラー内容: ${e}`)
     }
   }
 
