@@ -1,6 +1,7 @@
 'use client'
 import { useAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { getAllProjects, removeProject } from '@/api'
 import { Button } from '@/components/Button'
@@ -34,19 +35,20 @@ export const Events: React.FC = () => {
     })
   }, [loginToken])
 
-  const delProject = (id: string) => {return async () => {
-    if (!window.confirm('削除しますか？')) {
-      return
+  const delProject = (id: string) => {
+    return async () => {
+      if (!window.confirm('削除しますか？')) {
+        return
+      }
+      const removeAction = await removeProject(loginToken, id)
+      if (removeAction !== undefined) {
+        window.location.reload()
+      }
     }
-    const removeAction = await removeProject(loginToken, id)
-    if (removeAction !== undefined) {
-      window.location.reload()
-    }
-  }}
+  }
 
   return (
     <div>
-      <p>あ</p>
       {events.map((event) => {
         return (
           <div key={event.id} className={styles.eventWrap}>
@@ -56,6 +58,9 @@ export const Events: React.FC = () => {
             <Button className={styles.button} onClick={delProject(event.id)}>
               削除
             </Button>
+            <Link href={`/events/${event.id}`}>
+              <Button className={styles.button}>詳細</Button>
+            </Link>
           </div>
         )
       })}

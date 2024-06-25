@@ -77,11 +77,7 @@ type tanzaku = {
   nameLine: string
 }
 
-export const createTanzaku = async (
-  token: string,
-  projId: string,
-  tanzaku: tanzaku,
-) => {
+export const createTanzaku = async (projId: string, tanzaku: tanzaku) => {
   const response = await client.POST('/tanzaku/{projectId}/new', {
     params: {
       path: {
@@ -89,7 +85,17 @@ export const createTanzaku = async (
       },
     },
     body: tanzaku,
+  })
+  return response.data
+}
 
+export const removeTanzaku = async (token: string, tanzakuId: string) => {
+  const response = await client.DELETE('/tanzaku/del/{tanzakuId}', {
+    params: {
+      path: {
+        tanzakuId,
+      },
+    },
     headers: {
       Authorization: `Bearer ${token}`,
     },
