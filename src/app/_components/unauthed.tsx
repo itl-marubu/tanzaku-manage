@@ -7,7 +7,7 @@ import { useEffect } from 'react'
 
 const authedAtom = atomWithStorage('loggedIn', true)
 export const Unauthed: React.FC = () => {
-  const [authed, setAuthed] = useAtom(authedAtom)
+  const [authed, _] = useAtom(authedAtom)
 
   useEffect(() => {
     if (authed) {

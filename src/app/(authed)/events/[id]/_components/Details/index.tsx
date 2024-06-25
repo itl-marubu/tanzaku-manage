@@ -1,6 +1,5 @@
 'use client'
 
-import { atomWithStorage } from 'jotai/utils'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { getAllTanzakus, removeTanzaku } from '@/api'
@@ -19,13 +18,14 @@ type TanzakuType = {
   disabled: boolean
 }
 
-const loginTokenAtom = atomWithStorage('loginToken', '')
 export const Details: React.FC<Params> = ({ eventId }) => {
   // const [loginToken, _] = useAtom(loginTokenAtom)
   const loginToken =
     document.cookie
       .split(';')
-      .find((c) => {return c.trim().startsWith('loginToken=')})
+      .find((c) => {
+        return c.trim().startsWith('loginToken=')
+      })
       ?.split('=')[1] || ''
   const [tanzakus, setTanzskus] = useState([] as TanzakuType[])
   useEffect(() => {
@@ -42,7 +42,7 @@ export const Details: React.FC<Params> = ({ eventId }) => {
     tanzakus().catch((e) => {
       console.error(e)
     })
-  }, [loginToken])
+  }, [loginToken, eventId])
 
   const tanzakuDelete = async (id: string) => {
     if (!window.confirm('削除しますか？')) {
@@ -68,8 +68,8 @@ export const Details: React.FC<Params> = ({ eventId }) => {
               <p>{tanzaku.nameLine}</p>
               <p>{tanzaku.disabled}</p>
               <Button
-                onClick={() => {
-                  tanzakuDelete(tanzaku.id)
+                onClick={async () => {
+                  await tanzakuDelete(tanzaku.id)
                 }}
               >
                 表示削除
