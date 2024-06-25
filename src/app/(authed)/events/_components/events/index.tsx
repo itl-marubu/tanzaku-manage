@@ -54,7 +54,6 @@ export const Events: React.FC = () => {
           <div key={event.id} className={styles.eventWrap}>
             <p className={styles.eventName}>{event.name}</p>
             <p className={styles.eventDetails}>{event.description}</p>
-            <Button className={styles.button}>詳細</Button>
             <Button className={styles.button} onClick={delProject(event.id)}>
               削除
             </Button>
