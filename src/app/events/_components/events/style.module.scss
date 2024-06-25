@@ -1,0 +1,25 @@
+.eventWrap {
+  padding: 16px 20px;
+  background: #eee;
+  border-radius: var(--radius-card);
+
+  .eventName {
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+
+  .eventDetails {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    font-size: 0.8rem;
+  }
+
+  .button {
+    background-color: var(--accent-success);
+
+    &:hover {
+      background-color: var(--action-accent-hover);
+    }
+  }
+}
