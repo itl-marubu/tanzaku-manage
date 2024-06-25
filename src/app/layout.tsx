@@ -1,5 +1,4 @@
-import clsx from 'clsx'
-import { Noto_Sans_JP, Kaisei_Decol, Yuji_Syuku } from 'next/font/google'
+import { Noto_Sans_JP } from 'next/font/google'
 import 'normalize.css/normalize.css'
 
 import type { Metadata } from 'next'
@@ -7,16 +6,6 @@ import type { Metadata } from 'next'
 const nsjp = Noto_Sans_JP({
   subsets: ['latin-ext'],
   variable: '--font-noto-sans-jp',
-})
-const kaiseiDecol = Kaisei_Decol({
-  subsets: ['latin-ext'],
-  weight: ['400', '700'],
-  variable: '--font-kaisei-decol',
-})
-const yujiShuku = Yuji_Syuku({
-  subsets: ['latin-ext'],
-  weight: ['400'],
-  variable: '--font-yuji',
 })
 
 export const metadata: Metadata = {
@@ -30,29 +19,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin=""
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Yuji+Syuku&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body
-        className={clsx(
-          nsjp.variable,
-          kaiseiDecol.variable,
-          yujiShuku.variable,
-        )}
-        style={{ width: '1920px', height: '1080px', background: '#000' }}
-      >
-        {children}
-      </body>
+    <html lang="ja">
+      <body className={nsjp.variable}>{children}</body>
     </html>
   )
 }
