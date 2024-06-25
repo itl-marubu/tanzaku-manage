@@ -26,15 +26,9 @@ export const TanzakuToImage: React.FC = () => {
       if (ctx) {
         const width = image?.width
         const height = image?.height
-        canvas.width = width as number
-        canvas.height = height as number
-        ctx.drawImage(
-          image as HTMLImageElement,
-          0,
-          0,
-          width as number,
-          height as number,
-        )
+        canvas.width = width
+        canvas.height = height
+        ctx.drawImage(image, 0, 0, width, height)
       }
     }
   }, [image, imageLoaded])

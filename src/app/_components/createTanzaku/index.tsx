@@ -49,7 +49,7 @@ export const CreateTanzaku = forwardRef<HTMLCanvasElement, TanzakuProps>(
         return
       }
 
-      ctx.drawImage(image as HTMLImageElement, 0, 0, 300, 500)
+      ctx.drawImage(image, 0, 0, 300, 500)
 
       ctx.save()
       ctx.translate(45, 100)
