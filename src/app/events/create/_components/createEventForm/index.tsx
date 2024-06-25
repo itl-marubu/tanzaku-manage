@@ -2,9 +2,9 @@ import { useAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
 import { redirect } from 'next/navigation'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import styles from './index.module.scss'
 import { createProject } from '@/api'
 import { Button } from '@/components/Button'
+import styles from './index.module.scss'
 
 type FieldValues = {
   name: string

@@ -2,9 +2,9 @@
 import { useAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
 import { useEffect, useState } from 'react'
-import styles from './style.module.scss'
 import { getAllProjects } from '@/api'
 import { Button } from '@/components/Button'
+import styles from './style.module.scss'
 
 const loginTokenAtom = atomWithStorage('loginToken', '')
 export const Events: React.FC = () => {
@@ -35,13 +35,15 @@ export const Events: React.FC = () => {
   return (
     <div>
       <p>あ</p>
-      {events.map((event) => {return (
-        <div key={event.id} className={styles.eventWrap}>
-          <p className={styles.eventName}>{event.name}</p>
-          <p className={styles.eventDetails}>{event.description}</p>
-          <Button className={styles.button}>詳細</Button>
-        </div>
-      )})}
+      {events.map((event) => {
+        return (
+          <div key={event.id} className={styles.eventWrap}>
+            <p className={styles.eventName}>{event.name}</p>
+            <p className={styles.eventDetails}>{event.description}</p>
+            <Button className={styles.button}>詳細</Button>
+          </div>
+        )
+      })}
     </div>
   )
 }
