@@ -2,7 +2,7 @@
 import { useAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
 import { useEffect, useState } from 'react'
-import { getAllProjects } from '@/api'
+import { getAllProjects, removeProject } from '@/api'
 import { Button } from '@/components/Button'
 import styles from './style.module.scss'
 
@@ -34,6 +34,16 @@ export const Events: React.FC = () => {
     })
   }, [loginToken])
 
+  const delProject = (id: string) => async () => {
+    if (!window.confirm('削除しますか？')) {
+      return
+    }
+    const removeAction = await removeProject(loginToken, id)
+    if (removeAction !== undefined) {
+      window.location.reload()
+    }
+  }
+
   return (
     <div>
       <p>あ</p>
@@ -43,6 +53,9 @@ export const Events: React.FC = () => {
             <p className={styles.eventName}>{event.name}</p>
             <p className={styles.eventDetails}>{event.description}</p>
             <Button className={styles.button}>詳細</Button>
+            <Button className={styles.button} onClick={delProject(event.id)}>
+              削除
+            </Button>
           </div>
         )
       })}

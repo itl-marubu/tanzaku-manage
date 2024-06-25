@@ -141,6 +141,35 @@ paths:
                 $ref: '#/components/schemas/Error500'
       security:
         - bearerAuth: []
+  /projects/{projectId}:
+    delete:
+      operationId: deleteProject
+      tags:
+        - Projects
+      summary: Delete Project
+      description: Delete a project by ID
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          description: ID of the project to get
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Project found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectSchema'
+        '500':
+          description: Internal Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Error500'
+      security:
+        - bearerAuth: []
 
   /tanzaku/{projectId}/new:
     post:
@@ -178,7 +207,7 @@ paths:
       security:
         - bearerAuth: []
 
-  /tanzaku/{tanzakuId}/del:
+  /tanzaku/del/{tanzakuId}:
     delete:
       operationId: deleteTanzaku
       tags:
@@ -198,7 +227,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TanzakuSchema'
+                $ref: '#/components/schemas/TanzakuResponseSchema'
         '500':
           description: Internal Server Error
           content:
@@ -276,6 +305,10 @@ components:
 
     TanzakuSchema:
       type: object
+      required:
+        - textLine1
+        - nameLine
+        - projectId
       properties:
         textLine1:
           type: string
@@ -291,6 +324,12 @@ components:
           maximum: 16
     TanzakuResponseSchema:
       type: object
+      required:
+        - id
+        - textLine1
+        - nameLine
+        - projectId
+        - disabled
       properties:
         id:
           type: string
@@ -310,10 +349,13 @@ components:
         projectId:
           type: string
           example: 'clxrat7xl0001xd2txfzakzz9'
+        disabled:
+          type: boolean
+          example: false
     TanzakuSchemaArray:
       type: array
       items:
-        $ref: '#/components/schemas/TanzakuSchema'
+        $ref: '#/components/schemas/TanzakuResponseSchema'
     Error500:
       type: string
       example: 'Internal Server Error'
