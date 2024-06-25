@@ -178,7 +178,7 @@ paths:
       security:
         - bearerAuth: []
 
-  /tanzaku/{tanzakuId}/del:
+  /tanzaku/del/{tanzakuId}:
     delete:
       operationId: deleteTanzaku
       tags:
@@ -198,7 +198,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TanzakuSchema'
+                $ref: '#/components/schemas/TanzakuResponseSchema'
         '500':
           description: Internal Server Error
           content:
@@ -276,6 +276,10 @@ components:
 
     TanzakuSchema:
       type: object
+      required:
+        - textLine1
+        - nameLine
+        - projectId
       properties:
         textLine1:
           type: string
@@ -291,6 +295,12 @@ components:
           maximum: 16
     TanzakuResponseSchema:
       type: object
+      required:
+        - id
+        - textLine1
+        - nameLine
+        - projectId
+        - disabled
       properties:
         id:
           type: string
@@ -310,10 +320,13 @@ components:
         projectId:
           type: string
           example: 'clxrat7xl0001xd2txfzakzz9'
+        disabled:
+          type: boolean
+          example: false
     TanzakuSchemaArray:
       type: array
       items:
-        $ref: '#/components/schemas/TanzakuSchema'
+        $ref: '#/components/schemas/TanzakuResponseSchema'
     Error500:
       type: string
       example: 'Internal Server Error'

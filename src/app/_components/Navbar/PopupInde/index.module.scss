@@ -7,6 +7,11 @@
   background: var(--ui-background-opacity);
   backdrop-filter: blur(7px);
 
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
   .popInde {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));

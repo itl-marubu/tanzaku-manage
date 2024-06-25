@@ -6,10 +6,15 @@ import Link from 'next/link'
 import { Button } from '@/components/Button'
 
 const loginTokenAtom = atomWithStorage('loginToken', '')
+const loggedInAtom = atomWithStorage('loggedIn', false)
 export const Logout: React.FC = () => {
   const [loginToken, setLoginToken] = useAtom(loginTokenAtom)
+  const [_, setLoggedIn] = useAtom(loggedInAtom)
   if (loginToken !== '') {
     setLoginToken('')
+    setLoggedIn(false)
+    document.cookie =
+      'loginToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
     window.location.reload()
   }
 

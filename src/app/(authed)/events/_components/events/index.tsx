@@ -1,6 +1,7 @@
 'use client'
 import { useAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { getAllProjects } from '@/api'
 import { Button } from '@/components/Button'
@@ -36,13 +37,14 @@ export const Events: React.FC = () => {
 
   return (
     <div>
-      <p>あ</p>
       {events.map((event) => {
         return (
           <div key={event.id} className={styles.eventWrap}>
             <p className={styles.eventName}>{event.name}</p>
             <p className={styles.eventDetails}>{event.description}</p>
-            <Button className={styles.button}>詳細</Button>
+            <Link href={`/events/${event.id}`}>
+              <Button className={styles.button}>詳細</Button>
+            </Link>
           </div>
         )
       })}

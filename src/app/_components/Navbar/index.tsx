@@ -34,8 +34,8 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
 
   const menuContent: MenuContent[] = [
     {
-      title: '蔵書一覧',
-      link: '/books',
+      title: 'プロジェクト一覧',
+      link: '/events',
       visible: true,
     },
     {
@@ -50,7 +50,7 @@ export const Navbar: React.FC<NavbarProps> = (props) => {
       <div className={style.wrap}>
         <div className={style.inde}>
           <Link href="/" className={style.logo}>
-            <h1>Libsys</h1>
+            <h1>短冊管理ツール</h1>
           </Link>
           <nav className={style.menuItems}>
             <div className={style.invisibleOnMob}>
