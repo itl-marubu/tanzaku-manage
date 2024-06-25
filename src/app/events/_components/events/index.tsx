@@ -29,7 +29,9 @@ export const Events: React.FC = () => {
         console.error(e)
       }
     }
-    fetchEvents()
+    fetchEvents().catch((e) => {
+      console.error(e)
+    })
   }, [loginToken])
 
   return (
