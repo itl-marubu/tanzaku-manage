@@ -1,0 +1,30 @@
+.wrap {
+  min-height: 200px;
+  padding: 10px;
+  background-color: var(--ui-secondary);
+
+  .inde {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 30px auto;
+
+    .menuItems {
+      .link {
+        margin-right: 10px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #000;
+        text-decoration: none;
+      }
+    }
+
+    .logo {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      margin: 0;
+      font-size: 1.5rem;
+    }
+  }
+}

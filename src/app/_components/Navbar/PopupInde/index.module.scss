@@ -1,0 +1,47 @@
+.popWrap {
+  position: fixed;
+  top: 5rem;
+  left: 0;
+  z-index: calc(infinity);
+  width: 100%;
+  background: var(--ui-background-opacity);
+  backdrop-filter: blur(7px);
+
+  .popInde {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    padding: 20px;
+    margin: 0 auto;
+
+    .topLink {
+      display: flex;
+      justify-content: flex-start;
+      padding: 8px 1.3rem;
+      text-decoration: none;
+      border-bottom: 1px solid #000;
+
+      @media (width <= 768px) {
+        padding: 8px 1rem;
+      }
+
+      &:focus-visible,
+      &:focus {
+        outline: 2px solid rgb(204 163 0);
+      }
+
+      &.active {
+        font-weight: 700;
+        color: #242434;
+        background-color: #d7edff;
+      }
+
+      .topItem {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+      }
+    }
+  }
+}
