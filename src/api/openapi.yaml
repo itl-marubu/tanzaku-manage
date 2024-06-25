@@ -251,6 +251,11 @@ components:
           example: 'Project Description'
     ProjectSchema:
       type: object
+      required:
+        - id
+        - name
+        - description
+        - ownerId
       properties:
         id:
           type: string
