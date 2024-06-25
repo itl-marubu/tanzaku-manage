@@ -14,12 +14,42 @@ export const login = async (email: string, password: string) => {
     },
   })
 
-  return response.data.token
+  return response.data?.token
+}
+
+export const createUser = async (email: string, password: string) => {
+  const response = await client.POST('/admin/new', {
+    params: {},
+    body: {
+      email,
+      password,
+    },
+  })
+
+  return response.data
 }
 
 export const getAllProjects = async (token: string) => {
   const response = await client.GET('/projects/list', {
     params: {},
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  return response.data
+}
+
+export const createProject = async (
+  token: string,
+  name: string,
+  description?: string,
+) => {
+  const response = await client.POST('/projects/add', {
+    params: {},
+    body: {
+      name,
+      description,
+    },
     headers: {
       Authorization: `Bearer ${token}`,
     },
