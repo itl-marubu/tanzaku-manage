@@ -102,3 +102,17 @@ export const removeTanzaku = async (token: string, tanzakuId: string) => {
   })
   return response.data
 }
+
+export const removeProject = async (token: string, projectId: string) => {
+  const response = await client.DELETE('/projects/{projectId}', {
+    params: {
+      path: {
+        projectId,
+      },
+    },
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  return response.data
+}
