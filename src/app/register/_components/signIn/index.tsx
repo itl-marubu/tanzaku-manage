@@ -1,7 +1,7 @@
 'use client'
 import { redirect } from 'next/navigation'
-import { Form } from './_components/form'
 import { createUser } from '@/api'
+import { Form } from './_components/form'
 export const Login: React.FC = () => {
   const getRegistered = async ({
     email,

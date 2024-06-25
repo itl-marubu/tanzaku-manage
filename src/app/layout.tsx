@@ -1,11 +1,11 @@
-import { Noto_Sans_JP } from 'next/font/google'
 import { Provider as JotaiProvider } from 'jotai'
+import { Noto_Sans_JP } from 'next/font/google'
 import 'normalize.css/normalize.css'
 import { CookieBanner, GoogleTagManager } from '@/components/gtm'
 import '@/styles/colors.scss'
 import '@/styles/variables.scss'
-import type { Metadata } from 'next'
 import { Navbar } from './_components/Navbar'
+import type { Metadata } from 'next'
 
 const nsjp = Noto_Sans_JP({
   subsets: ['latin-ext'],

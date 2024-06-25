@@ -2,9 +2,9 @@
 import Link from 'next/link'
 import Script from 'next/script'
 import { useEffect, useState } from 'react'
+import { getLocalStorage, setLocalStorage } from '@/lib/storageHelper'
 import styles from './style.module.scss'
 import { Button } from '../Button'
-import { getLocalStorage, setLocalStorage } from '@/lib/storageHelper'
 
 type DataObj = Record<string, string | number>
 
