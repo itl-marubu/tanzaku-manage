@@ -34,7 +34,7 @@ export const Events: React.FC = () => {
     })
   }, [loginToken])
 
-  const delProject = (id: string) => async () => {
+  const delProject = (id: string) => {return async () => {
     if (!window.confirm('削除しますか？')) {
       return
     }
@@ -42,7 +42,7 @@ export const Events: React.FC = () => {
     if (removeAction !== undefined) {
       window.location.reload()
     }
-  }
+  }}
 
   return (
     <div>
