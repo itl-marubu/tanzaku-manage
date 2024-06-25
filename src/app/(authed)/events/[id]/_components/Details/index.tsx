@@ -1,11 +1,11 @@
 'use client'
 
-import { getAllTanzakus, removeTanzaku } from '@/api'
 import { atomWithStorage } from 'jotai/utils'
-import { useEffect, useState } from 'react'
-import styles from './index.module.scss'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { getAllTanzakus, removeTanzaku } from '@/api'
 import { Button } from '@/components/Button'
+import styles from './index.module.scss'
 
 type Params = {
   eventId: string
@@ -25,7 +25,7 @@ export const Details: React.FC<Params> = ({ eventId }) => {
   const loginToken =
     document.cookie
       .split(';')
-      .find((c) => c.trim().startsWith('loginToken='))
+      .find((c) => {return c.trim().startsWith('loginToken=')})
       ?.split('=')[1] || ''
   const [tanzakus, setTanzskus] = useState([] as TanzakuType[])
   useEffect(() => {

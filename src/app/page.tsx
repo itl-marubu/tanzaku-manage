@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import styles from './page.module.scss'
 import { Unauthed } from './_components/unauthed'
+import styles from './page.module.scss'
 
 export default function Home() {
   return (

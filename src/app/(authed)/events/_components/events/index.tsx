@@ -1,11 +1,11 @@
 'use client'
 import { useAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { getAllProjects } from '@/api'
 import { Button } from '@/components/Button'
 import styles from './style.module.scss'
-import Link from 'next/link'
 
 const loginTokenAtom = atomWithStorage('loginToken', '')
 export const Events: React.FC = () => {
