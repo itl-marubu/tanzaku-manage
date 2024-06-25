@@ -198,7 +198,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TanzakuSchema'
+                $ref: '#/components/schemas/TanzakuResponseSchema'
         '500':
           description: Internal Server Error
           content:
@@ -276,6 +276,10 @@ components:
 
     TanzakuSchema:
       type: object
+      required:
+        - textLine1
+        - nameLine
+        - projectId
       properties:
         textLine1:
           type: string
@@ -291,6 +295,11 @@ components:
           maximum: 16
     TanzakuResponseSchema:
       type: object
+      required:
+        - id
+        - textLine1
+        - nameLine
+        - projectId
       properties:
         id:
           type: string
@@ -313,7 +322,7 @@ components:
     TanzakuSchemaArray:
       type: array
       items:
-        $ref: '#/components/schemas/TanzakuSchema'
+        $ref: '#/components/schemas/TanzakuResponseSchema'
     Error500:
       type: string
       example: 'Internal Server Error'

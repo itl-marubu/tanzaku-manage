@@ -1,4 +1,4 @@
-import { Details } from './_components/Details'
+import { TanzakuForm } from './_components/tanzakuForm'
 import styles from './page.module.scss'
 
 export const runtime = 'edge'
@@ -10,10 +10,10 @@ export default function EventDetailPage({
 }) {
   return (
     <main className={styles.main}>
-      <h1>イベント詳細</h1>
+      <h1>短冊の登録</h1>
       <p>イベント ID: {params.id}</p>
       <hr />
-      <Details eventId={params.id} />
+      <TanzakuForm eventId={params.id} />
     </main>
   )
 }

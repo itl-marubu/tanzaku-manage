@@ -13,6 +13,8 @@ export const Login: React.FC = () => {
   const [loginToken, setloginToken] = useAtom(loginTokenAtom)
   const [, setLoggedinToken] = useAtom(isLoggedInAtom)
   const [, setValidThru] = useAtom(validThruAtom)
+  document.cookie = `loginToken=${loginToken};`
+
   if (loginToken !== '') {
     redirect('/events')
   }

@@ -77,11 +77,7 @@ type tanzaku = {
   nameLine: string
 }
 
-export const createTanzaku = async (
-  token: string,
-  projId: string,
-  tanzaku: tanzaku,
-) => {
+export const createTanzaku = async (projId: string, tanzaku: tanzaku) => {
   const response = await client.POST('/tanzaku/{projectId}/new', {
     params: {
       path: {
@@ -89,10 +85,6 @@ export const createTanzaku = async (
       },
     },
     body: tanzaku,
-
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
   })
   return response.data
 }
