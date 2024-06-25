@@ -7,14 +7,14 @@ import { login } from '@/api'
 import { Form } from './form'
 
 const loginTokenAtom = atomWithStorage('loginToken', '')
-const isLoggedInAtom = atomWithStorage('authed', '')
+const isLoggedInAtom = atomWithStorage('loggedIn', true)
 const validThruAtom = atomWithStorage('valid', '')
 export const Login: React.FC = () => {
   const [loginToken, setloginToken] = useAtom(loginTokenAtom)
   const [, setLoggedinToken] = useAtom(isLoggedInAtom)
   const [, setValidThru] = useAtom(validThruAtom)
   if (loginToken !== '') {
-    redirect('/')
+    redirect('/events')
   }
 
   const getLogin = async ({
@@ -28,7 +28,7 @@ export const Login: React.FC = () => {
       const data = await login(email, password)
       if (data !== undefined) {
         setloginToken(`${data}`)
-        setLoggedinToken('true')
+        setLoggedinToken(true)
         const decoded = decodeJwt(`${data}`)
         setValidThru(`${decoded?.exp}`)
         location.reload()

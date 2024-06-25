@@ -6,10 +6,13 @@ import Link from 'next/link'
 import { Button } from '@/components/Button'
 
 const loginTokenAtom = atomWithStorage('loginToken', '')
+const loggedInAtom = atomWithStorage('loggedIn', false)
 export const Logout: React.FC = () => {
   const [loginToken, setLoginToken] = useAtom(loginTokenAtom)
+  const [_, setLoggedIn] = useAtom(loggedInAtom)
   if (loginToken !== '') {
     setLoginToken('')
+    setLoggedIn(false)
     window.location.reload()
   }
 

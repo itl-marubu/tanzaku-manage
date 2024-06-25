@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { getAllProjects } from '@/api'
 import { Button } from '@/components/Button'
 import styles from './style.module.scss'
+import Link from 'next/link'
 
 const loginTokenAtom = atomWithStorage('loginToken', '')
 export const Events: React.FC = () => {
@@ -42,7 +43,9 @@ export const Events: React.FC = () => {
           <div key={event.id} className={styles.eventWrap}>
             <p className={styles.eventName}>{event.name}</p>
             <p className={styles.eventDetails}>{event.description}</p>
-            <Button className={styles.button}>詳細</Button>
+            <Link href={`/events/${event.id}`}>
+              <Button className={styles.button}>詳細</Button>
+            </Link>
           </div>
         )
       })}
