@@ -2,9 +2,6 @@
 // This file is generated automatically by the typed-scss-modules library
 export type Styles = {
   main: string
-  sasa: string
-  tanzakuIntro: string
-  yureru: string
 }
 
 export type ClassNames = keyof Styles

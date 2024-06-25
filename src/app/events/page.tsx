@@ -1,7 +1,7 @@
-import { Button } from '@/components/Button'
+import Link from 'next/link'
 import { Events } from './_components/events'
 import styles from './page.module.scss'
-import Link from 'next/link'
+import { Button } from '@/components/Button'
 
 export default function Home() {
   return (

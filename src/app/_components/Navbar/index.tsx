@@ -4,10 +4,10 @@ import { useAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
 import Link from 'next/link'
 import { ReactNode, useState } from 'react'
-import { Button } from '@/components/Button'
 import style from './index.module.scss'
 import { PopupInde } from './PopupInde'
 import { IconClose, IconMenu } from '../../../components/Icons/generated'
+import { Button } from '@/components/Button'
 
 export type MenuContent = {
   title: string
