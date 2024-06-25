@@ -12,11 +12,10 @@ type Params = {
 }
 
 type TanzakuType = {
-  // id: string
+  id: string
   textLine1: string
   textLine2?: string
   nameLine: string
-  // projectId: string
 }
 
 const loginTokenAtom = atomWithStorage('loginToken', '')
@@ -55,7 +54,7 @@ export const Details: React.FC<Params> = ({ eventId }) => {
       <h2>短冊一覧</h2>
       {tanzakus.map((tanzaku) => {
         return (
-          <div key={tanzaku.textLine1} className={styles.tanzaku}>
+          <div key={tanzaku.id} className={styles.tanzaku}>
             <p>{tanzaku.textLine1}</p>
             <p>{tanzaku.textLine2}</p>
             <p>{tanzaku.nameLine}</p>
