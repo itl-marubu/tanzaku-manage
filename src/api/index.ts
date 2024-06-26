@@ -17,12 +17,19 @@ export const login = async (email: string, password: string) => {
   return response.data?.token
 }
 
-export const createUser = async (email: string, password: string) => {
+export const createUser = async (
+  loginToken: string,
+  email: string,
+  password: string,
+) => {
   const response = await client.POST('/admin/new', {
     params: {},
     body: {
       email,
       password,
+    },
+    headers: {
+      Authorization: `Bearer ${loginToken}`,
     },
   })
 
