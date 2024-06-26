@@ -24,7 +24,10 @@ export const TanzakuForm: React.FC<Props> = ({ eventId }) => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
-      const res = await createTanzaku(eventId, data)
+      const res = await createTanzaku(eventId, data).catch((e) => {
+        console.error(e)
+        alert(`作成に失敗しました`)
+      })
       if (res !== undefined) {
         alert('作成しました')
         redirect('/events')
