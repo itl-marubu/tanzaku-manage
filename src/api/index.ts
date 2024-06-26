@@ -86,6 +86,9 @@ export const createTanzaku = async (projId: string, tanzaku: tanzaku) => {
     },
     body: tanzaku,
   })
+  if (response.error) {
+    throw new Error(response.error)
+  }
   return response.data
 }
 

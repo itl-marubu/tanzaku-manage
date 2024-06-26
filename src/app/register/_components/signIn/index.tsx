@@ -13,6 +13,7 @@ export const Login: React.FC = () => {
     try {
       const user = await createUser(email, password)
       if (user !== undefined) {
+        alert('登録しました')
         redirect('/login')
       }
     } catch (e) {
