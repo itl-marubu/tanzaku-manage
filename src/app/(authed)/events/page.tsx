@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { Button } from '@/components/Button'
+import { IconAddCircle } from '@/components/Icons/generated'
 import { Events } from './_components/events'
 import styles from './page.module.scss'
-import { IconAddCircle } from '@/components/Icons/generated'
 
 export default function Event() {
   return (

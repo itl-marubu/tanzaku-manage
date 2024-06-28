@@ -5,8 +5,8 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { getAllProjects, removeProject } from '@/api'
 import { Button } from '@/components/Button'
-import styles from './style.module.scss'
 import { IconDelete, IconSettings } from '@/components/Icons/generated'
+import styles from './style.module.scss'
 
 const loginTokenAtom = atomWithStorage('loginToken', '')
 export const Events: React.FC = () => {

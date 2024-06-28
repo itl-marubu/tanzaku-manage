@@ -1,7 +1,7 @@
+import Link from 'next/link'
 import { IconLink } from '@/components/Icons/generated'
 import { Details } from './_components/Details'
 import styles from './page.module.scss'
-import Link from 'next/link'
 
 export const runtime = 'edge'
 

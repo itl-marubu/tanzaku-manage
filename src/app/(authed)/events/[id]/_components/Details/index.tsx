@@ -4,8 +4,8 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { getAllTanzakus, removeTanzaku, reviveTanzaku } from '@/api'
 import { Button } from '@/components/Button'
-import styles from './index.module.scss'
 import { IconAddCircle, IconEdit } from '@/components/Icons/generated'
+import styles from './index.module.scss'
 
 type Params = {
   eventId: string

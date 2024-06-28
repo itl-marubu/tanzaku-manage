@@ -1,11 +1,11 @@
 'use client'
 import { useAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
+import { useEffect, useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { createProject, getEachProject, updateProject } from '@/api'
+import { getEachProject, updateProject } from '@/api'
 import { Button } from '@/components/Button'
 import styles from './index.module.scss'
-import { useEffect, useState } from 'react'
 
 type FieldValues = {
   name: string

@@ -147,7 +147,7 @@ export const getAllTanzakus = async (token: string, projId: string) => {
       new Error(`error: ${e}`)
       return
     })
-  return response.data
+  return response?.data
 }
 
 type tanzaku = {
