@@ -1,6 +1,7 @@
 'use client'
 import { EditEventForm } from './_components/editEventForm'
 import styles from './page.module.scss'
+export const runtime = 'edge'
 
 export default function Home({ params }: { params: { id: string } }) {
   return (
