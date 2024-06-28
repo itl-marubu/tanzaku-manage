@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import { getAllProjects, removeProject } from '@/api'
 import { Button } from '@/components/Button'
 import styles from './style.module.scss'
+import { IconDelete, IconSettings } from '@/components/Icons/generated'
 
 const loginTokenAtom = atomWithStorage('loginToken', '')
 export const Events: React.FC = () => {
@@ -56,10 +57,14 @@ export const Events: React.FC = () => {
             <p className={styles.eventDetails}>{event.description}</p>
             <span className={styles.buttons}>
               <Button className={styles.button} onClick={delProject(event.id)}>
+                <IconDelete />
                 削除
               </Button>
               <Link href={`/events/${event.id}`}>
-                <Button className={styles.button}>詳細</Button>
+                <Button className={styles.button}>
+                  <IconSettings />
+                  詳細
+                </Button>
               </Link>
             </span>{' '}
           </div>

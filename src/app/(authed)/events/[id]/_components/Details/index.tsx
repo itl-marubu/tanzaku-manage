@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { getAllTanzakus, removeTanzaku, reviveTanzaku } from '@/api'
 import { Button } from '@/components/Button'
 import styles from './index.module.scss'
+import { IconAddCircle, IconEdit } from '@/components/Icons/generated'
 
 type Params = {
   eventId: string
@@ -62,10 +63,16 @@ export const Details: React.FC<Params> = ({ eventId }) => {
     <>
       <span className={styles.buttons}>
         <Link href={`/events/${eventId}/SubmitTanzaku`}>
-          <Button>短冊を作成</Button>
+          <Button>
+            <IconAddCircle />
+            短冊を作成
+          </Button>
         </Link>
         <Link href={`/events/${eventId}/edit`}>
-          <Button>イベントを編集</Button>
+          <Button>
+            <IconEdit />
+            イベントを編集
+          </Button>
         </Link>
       </span>
       <h2>短冊一覧</h2>
