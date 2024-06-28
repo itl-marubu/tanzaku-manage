@@ -63,7 +63,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error500'
 
-  /projects/add:
+  /projects:
     post:
       operationId: addProject
       tags:
@@ -91,7 +91,6 @@ paths:
                 $ref: '#/components/schemas/Error500'
       security:
         - bearerAuth: []
-  /projects/list:
     get:
       operationId: listProjects
       tags:
@@ -175,7 +174,7 @@ paths:
                 $ref: '#/components/schemas/Error500'
       security:
         - bearerAuth: []
-  /projects/{projectId}/list:
+  /projects/{projectId}:
     get:
       operationId: getAllProjects
       tags:
@@ -204,7 +203,6 @@ paths:
                 $ref: '#/components/schemas/Error500'
       security:
         - bearerAuth: []
-  /projects/{projectId}:
     delete:
       operationId: deleteProject
       tags:
