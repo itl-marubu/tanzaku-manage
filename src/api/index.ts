@@ -136,6 +136,7 @@ export const reviveTanzaku = async (token: string, id: string) => {
     .then((res) => {
       return res?.data
     })
+  return response
 }
 
 export const removeProject = async (token: string, projectId: string) => {
