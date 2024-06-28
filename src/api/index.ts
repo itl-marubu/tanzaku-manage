@@ -130,7 +130,7 @@ export const reviveTanzaku = async (token: string, id: string) => {
       },
     })
     .catch((e) => {
-      new Error(e)
+      new Error(`error: ${e}`)
       return
     })
     .then((res) => {
