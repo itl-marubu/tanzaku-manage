@@ -1,6 +1,5 @@
 import { useAtom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
-import { redirect } from 'next/navigation'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { createProject } from '@/api'
 import { Button } from '@/components/Button'
@@ -9,6 +8,8 @@ import styles from './index.module.scss'
 type FieldValues = {
   name: string
   description: string
+  noticeLarge?: string
+  noticeQR?: string
 }
 
 const loginTokenAtom = atomWithStorage('loginToken', '')
@@ -23,14 +24,19 @@ export const CreateEventForm: React.FC = () => {
   const [loginToken, _] = useAtom(loginTokenAtom)
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    try {
-      const res = await createProject(loginToken, data.name, data.description)
-      if (res !== undefined) {
-        alert('作成しました')
-        redirect('/events')
-      }
-    } catch (e) {
+    const res = await createProject(
+      loginToken,
+      data.name,
+      data.description,
+      data.noticeLarge,
+      data.noticeQR,
+    ).catch((e) => {
       console.error(e)
+      alert('作成に失敗しました')
+    })
+    if (res !== undefined) {
+      alert('作成しました')
+      location.href = '/events'
     }
   }
 
@@ -55,6 +61,18 @@ export const CreateEventForm: React.FC = () => {
           className={styles.input}
         />
         {errors.description && <span>説明を入力してください</span>}
+      </div>
+      <div className={styles.inputWrap}>
+        <label htmlFor="noticeLarge" className={styles.label}>
+          お知らせ（大）
+        </label>
+        <textarea {...register('noticeLarge')} className={styles.input} />
+      </div>
+      <div className={styles.inputWrap}>
+        <label htmlFor="noticeQR" className={styles.label}>
+          お知らせ（QR）
+        </label>
+        <input {...register('noticeQR')} className={styles.input} />
       </div>
 
       <Button type="submit">作成</Button>

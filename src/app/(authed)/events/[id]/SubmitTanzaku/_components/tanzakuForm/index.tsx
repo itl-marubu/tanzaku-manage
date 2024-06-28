@@ -1,5 +1,4 @@
 'use client'
-import { redirect } from 'next/navigation'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { createTanzaku } from '@/api'
 import { Button } from '@/components/Button'
@@ -23,18 +22,13 @@ export const TanzakuForm: React.FC<Props> = ({ eventId }) => {
   } = useForm<FieldValues>()
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    try {
-      const res = await createTanzaku(eventId, data).catch((e) => {
-        console.error(e)
-        alert(`作成に失敗しました`)
-      })
-      if (res !== undefined) {
-        alert('作成しました')
-        redirect('/events')
-      }
-    } catch (e) {
+    const res = await createTanzaku(eventId, data).catch((e) => {
       console.error(e)
-      alert(`作成に失敗しました`)
+      alert('作成に失敗しました')
+    })
+    if (res !== undefined) {
+      alert('作成しました')
+      location.href = `/events/${eventId}`
     }
   }
 
