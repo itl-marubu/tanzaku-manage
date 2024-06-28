@@ -37,7 +37,7 @@ export const createUser = async (
 }
 
 export const getAllProjects = async (token: string) => {
-  const response = await client.GET('/projects/list', {
+  const response = await client.GET('/projects', {
     params: {},
     headers: {
       Authorization: `Bearer ${token}`,
@@ -53,7 +53,7 @@ export const createProject = async (
   noticeLarge?: string,
   noticeQR?: string,
 ) => {
-  const response = await client.POST('/projects/add', {
+  const response = await client.POST('/projects', {
     params: {},
     body: {
       name,
@@ -69,7 +69,7 @@ export const createProject = async (
 }
 
 export const getAllTanzakus = async (token: string, projId: string) => {
-  const response = await client.GET('/projects/{projectId}/list', {
+  const response = await client.GET('/projects/{projectId}', {
     params: {
       path: {
         projectId: projId,
