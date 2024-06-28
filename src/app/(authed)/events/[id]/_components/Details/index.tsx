@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { getAllTanzakus, removeTanzaku } from '@/api'
+import { getAllTanzakus, removeTanzaku, reviveTanzaku } from '@/api'
 import { Button } from '@/components/Button'
 import styles from './index.module.scss'
 
@@ -53,6 +53,11 @@ export const Details: React.FC<Params> = ({ eventId }) => {
       window.location.reload()
     }
   }
+
+  const tanzakuRevive = async (id: string) => {
+    const reviveAction = await reviveTanzaku(loginToken, id)
+    window.location.reload()
+  }
   return (
     <>
       <Link href={`/events/${eventId}/SubmitTanzaku`}>
@@ -72,7 +77,7 @@ export const Details: React.FC<Params> = ({ eventId }) => {
                   await tanzakuDelete(tanzaku.id)
                 }}
               >
-                表示削除
+                削除
               </Button>
             </div>
           )
@@ -88,6 +93,13 @@ export const Details: React.FC<Params> = ({ eventId }) => {
               <p>{tanzaku.textLine2}</p>
               <p>{tanzaku.nameLine}</p>
               <p>{tanzaku.disabled}</p>
+              <Button
+                onClick={async () => {
+                  await tanzakuRevive(tanzaku.id)
+                }}
+              >
+                再表示
+              </Button>
             </div>
           )
         }

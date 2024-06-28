@@ -50,12 +50,16 @@ export const createProject = async (
   token: string,
   name: string,
   description?: string,
+  noticeLarge?: string,
+  noticeQR?: string,
 ) => {
   const response = await client.POST('/projects/add', {
     params: {},
     body: {
       name,
       description,
+      noticeLarge,
+      noticeQR,
     },
     headers: {
       Authorization: `Bearer ${token}`,
@@ -85,10 +89,10 @@ type tanzaku = {
 }
 
 export const createTanzaku = async (projId: string, tanzaku: tanzaku) => {
-  const response = await client.POST('/tanzaku/{projectId}/new', {
+  const response = await client.POST('/tanzaku/{id}', {
     params: {
       path: {
-        projectId: projId,
+        id: projId,
       },
     },
     body: tanzaku,
@@ -99,11 +103,11 @@ export const createTanzaku = async (projId: string, tanzaku: tanzaku) => {
   return response.data
 }
 
-export const removeTanzaku = async (token: string, tanzakuId: string) => {
-  const response = await client.DELETE('/tanzaku/del/{tanzakuId}', {
+export const removeTanzaku = async (token: string, id: string) => {
+  const response = await client.DELETE('/tanzaku/{id}', {
     params: {
       path: {
-        tanzakuId,
+        id,
       },
     },
     headers: {
@@ -111,6 +115,27 @@ export const removeTanzaku = async (token: string, tanzakuId: string) => {
     },
   })
   return response.data
+}
+
+export const reviveTanzaku = async (token: string, id: string) => {
+  const response = await client
+    .PATCH('/tanzaku/{id}', {
+      params: {
+        path: {
+          id,
+        },
+      },
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .catch((e) => {
+      new Error(e)
+      return
+    })
+    .then((res) => {
+      return res?.data
+    })
 }
 
 export const removeProject = async (token: string, projectId: string) => {
