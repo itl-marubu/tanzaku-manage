@@ -55,7 +55,7 @@ export const Details: React.FC<Params> = ({ eventId }) => {
   }
 
   const tanzakuRevive = async (id: string) => {
-    const reviveAction = await reviveTanzaku(loginToken, id)
+    await reviveTanzaku(loginToken, id)
     window.location.reload()
   }
   return (
