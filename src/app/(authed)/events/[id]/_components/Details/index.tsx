@@ -60,9 +60,14 @@ export const Details: React.FC<Params> = ({ eventId }) => {
   }
   return (
     <>
-      <Link href={`/events/${eventId}/SubmitTanzaku`}>
-        <Button>短冊を作成</Button>
-      </Link>
+      <span className={styles.buttons}>
+        <Link href={`/events/${eventId}/SubmitTanzaku`}>
+          <Button>短冊を作成</Button>
+        </Link>
+        <Link href={`/events/${eventId}/edit`}>
+          <Button>イベントを編集</Button>
+        </Link>
+      </span>
       <h2>短冊一覧</h2>
       {tanzakus.map((tanzaku) => {
         if (!tanzaku.disabled) {

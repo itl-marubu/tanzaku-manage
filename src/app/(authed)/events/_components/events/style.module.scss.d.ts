@@ -2,6 +2,7 @@
 // This file is generated automatically by the typed-scss-modules library
 export type Styles = {
   button: string
+  buttons: string
   eventDetails: string
   eventName: string
   eventWrap: string
