@@ -9,7 +9,9 @@ const authMiddleware: MiddlewareHandler = async (ctx, next) => {
   const loginToken = ctx.req
     .header('cookie')
     ?.split(';')
-    .find((c) => {return c.includes('loginToken')})
+    .find((c) => {
+      return c.includes('loginToken')
+    })
     ?.split('=')[1]
 
   if (!loginToken) {

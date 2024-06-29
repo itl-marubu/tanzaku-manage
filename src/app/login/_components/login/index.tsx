@@ -20,7 +20,10 @@ export const Login: React.FC = () => {
   }
 
   if (loginToken !== '') {
-    redirect('/events')
+    const decoded = decodeJwt(`${loginToken}`) as { exp: number }
+    if (decoded.exp > Date.now() / 1000) {
+      redirect('/events')
+    }
   }
 
   const getLogin = async ({
