@@ -14,7 +14,9 @@ export const Login: React.FC = () => {
   const [, setLoggedinToken] = useAtom(isLoggedInAtom)
   const [, setValidThru] = useAtom(validThruAtom)
   if (typeof document !== 'undefined') {
-    document.cookie = `loginToken=${loginToken};`
+    document.cookie = `loginToken=${loginToken}; expires=${new Date(
+      new Date().getTime() + 1000 * 60 * 60,
+    ).toUTCString()}; path=/;`
   }
 
   if (loginToken !== '') {
