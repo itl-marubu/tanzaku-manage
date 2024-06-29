@@ -1,5 +1,5 @@
-import { handle } from 'hono/vercel'
 import { Hono, MiddlewareHandler } from 'hono'
+import { handle } from 'hono/vercel'
 import { NextRequest, NextResponse } from 'next/server'
 
 const app = new Hono()
@@ -9,7 +9,7 @@ const authMiddleware: MiddlewareHandler = async (ctx, next) => {
   const loginToken = ctx.req
     .header('cookie')
     ?.split(';')
-    .find((c) => c.includes('loginToken'))
+    .find((c) => {return c.includes('loginToken')})
     ?.split('=')[1]
 
   if (!loginToken) {
