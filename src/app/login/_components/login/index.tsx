@@ -23,6 +23,10 @@ export const Login: React.FC = () => {
     const decoded = decodeJwt(`${loginToken}`) as { exp: number }
     if (decoded.exp > Date.now() / 1000) {
       redirect('/events')
+    } else {
+      setloginToken('')
+      setLoggedinToken(false)
+      setValidThru('')
     }
   }
 
