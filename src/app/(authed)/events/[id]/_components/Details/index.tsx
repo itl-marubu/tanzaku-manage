@@ -20,7 +20,6 @@ type TanzakuType = {
 }
 
 export const Details: React.FC<Params> = ({ eventId }) => {
-  // const [loginToken, _] = useAtom(loginTokenAtom)
   const loginToken =
     document.cookie
       .split(';')
@@ -65,7 +64,15 @@ export const Details: React.FC<Params> = ({ eventId }) => {
         <Link href={`/events/${eventId}/SubmitTanzaku`}>
           <Button>
             <IconAddCircle />
-            短冊を作成
+            短冊を作成（職権）
+          </Button>
+        </Link>
+        <Link
+          href={`${process.env.NEXT_PUBLIC_SUBMIT_ENDPOINT}/${eventId}/post`}
+        >
+          <Button>
+            <IconAddCircle />
+            短冊を作成（利用者用）
           </Button>
         </Link>
         <Link href={`/events/${eventId}/edit`}>
