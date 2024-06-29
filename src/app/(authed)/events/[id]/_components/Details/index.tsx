@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { getAllTanzakus, removeTanzaku, reviveTanzaku } from '@/api'
 import { Button } from '@/components/Button'
+import { IconAddCircle, IconEdit } from '@/components/Icons/generated'
 import styles from './index.module.scss'
 
 type Params = {
@@ -60,9 +61,20 @@ export const Details: React.FC<Params> = ({ eventId }) => {
   }
   return (
     <>
-      <Link href={`/events/${eventId}/SubmitTanzaku`}>
-        <Button>短冊を作成</Button>
-      </Link>
+      <span className={styles.buttons}>
+        <Link href={`/events/${eventId}/SubmitTanzaku`}>
+          <Button>
+            <IconAddCircle />
+            短冊を作成
+          </Button>
+        </Link>
+        <Link href={`/events/${eventId}/edit`}>
+          <Button>
+            <IconEdit />
+            イベントを編集
+          </Button>
+        </Link>
+      </span>
       <h2>短冊一覧</h2>
       {tanzakus.map((tanzaku) => {
         if (!tanzaku.disabled) {

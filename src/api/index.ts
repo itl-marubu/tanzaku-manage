@@ -46,6 +46,69 @@ export const getAllProjects = async (token: string) => {
   return response.data
 }
 
+export const getEachProject = async (id: string) => {
+  const response = await client
+    .GET('/pub/{projectId}', {
+      params: {
+        path: {
+          projectId: id,
+        },
+      },
+    })
+    .then(
+      (res) => {
+        return res.data
+      },
+      (e) => {
+        console.error(e)
+        new Error(`error: ${e}`)
+        return
+      },
+    )
+  return response
+}
+
+export const updateProject = async (
+  token: string,
+  id: string,
+  name: string,
+  description?: string,
+  noticeLarge?: string,
+  noticeQR?: string,
+) => {
+  const response = await client
+    .PATCH('/projects/{projectId}', {
+      params: {
+        path: {
+          projectId: id,
+        },
+      },
+      body: {
+        name,
+        description,
+        noticeLarge,
+        noticeQR,
+      },
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then(
+      (res) => {
+        return res.data
+      },
+      (e) => {
+        new Error(`error: ${e}`)
+        return
+      },
+    )
+    .catch((e) => {
+      new Error(`error: ${e}`)
+      return
+    })
+  return response
+}
+
 export const createProject = async (
   token: string,
   name: string,
@@ -69,17 +132,22 @@ export const createProject = async (
 }
 
 export const getAllTanzakus = async (token: string, projId: string) => {
-  const response = await client.GET('/projects/{projectId}', {
-    params: {
-      path: {
-        projectId: projId,
+  const response = await client
+    .GET('/projects/{projectId}', {
+      params: {
+        path: {
+          projectId: projId,
+        },
       },
-    },
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
-  return response.data
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .catch((e) => {
+      new Error(`error: ${e}`)
+      return
+    })
+  return response?.data
 }
 
 type tanzaku = {
