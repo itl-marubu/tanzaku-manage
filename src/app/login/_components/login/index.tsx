@@ -16,7 +16,7 @@ export const Login: React.FC = () => {
   if (typeof document !== 'undefined') {
     document.cookie = `loginToken=${loginToken}; expires=${new Date(
       new Date().getTime() + 1000 * 60 * 60,
-    ).toUTCString()}; path=/; samesite=strict; secure; ${process.env.NODE_ENV === 'development' ? '' : 'httponly'}`
+    ).toUTCString()}; path=/;`
   }
 
   if (loginToken !== '') {
